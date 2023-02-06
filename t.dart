@@ -479,21 +479,6 @@ void main(List<String> args) {
     "oiseau",
     "maison",
     "voiture",
-    "arbre",
-    "fleur",
-    "montagne",
-    "rivière",
-    "lac",
-    "école",
-    "bibliothèque",
-    "parking",
-    "hôtel",
-    "restaurant",
-    "supermarché",
-    "café",
-    "banque",
-    "poste",
-    "gare"
   ];
   ;
   var words = w
@@ -505,8 +490,7 @@ void main(List<String> args) {
 
   var gn = generateLayout(words)["table"];
 
-  print(gn[0].length);
-  print(gn.length);
+  print("${gn[0].length}x${gn.length}");
   for (var row in gn) {
     print(row);
   }
