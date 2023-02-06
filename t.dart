@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 distance(num x1, num y1, num x2, num y2) {
@@ -480,7 +481,10 @@ void main(List<String> args) {
     "maison",
     "voiture",
   ];
-  ;
+  var s1 = DateTime.now().millisecondsSinceEpoch;
+  // var timeout = Timer.;
+  //   if (!isover) tcounter++;
+  // });
   var words = w
       .map((e) => ({
             "answer": Random().nextDouble() > 0.5 ? e : inverse_str(e),
@@ -488,9 +492,34 @@ void main(List<String> args) {
           }))
       .toList();
 
+  var count = 0;
   var gn = generateLayout(words)["table"];
+  var best = gn[0].length * gn.length;
 
-  print("${gn[0].length}x${gn.length}");
+  bool condition = gn[0].length > gn.length;
+  condition = true;
+  while (condition) {
+    if (count >= 10) break;
+
+    // print("Current : ${gn[0].length * gn.length}");
+    // print("Best : $best");
+    if (gn[0].length * gn.length < best) best = gn[0].length * gn.length;
+
+    words = w
+        .map((e) => ({
+              "answer": Random().nextDouble() > 0.5 ? e : inverse_str(e),
+              "clue": "",
+            }))
+        .toList();
+    gn = generateLayout(words)["table"];
+    // print("\n");
+    count++;
+  }
+  var s2 = DateTime.now().millisecondsSinceEpoch;
+  var tcounter = s2 - s1;
+  print("Best : $best");
+
+  print("Duration : $tcounter ms");
   for (var row in gn) {
     print(row);
   }
